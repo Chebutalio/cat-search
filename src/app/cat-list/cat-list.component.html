@@ -1,0 +1,59 @@
+<header>
+  <div class="header-container mb-20">
+    <p class="header--logo color-brown">CAT SEARCH</p>
+    <nav class="header--navigation">
+      <ul class="header--nav-links">
+        <li><a class="header--nav-link color-brown" href="#">Home</a></li>
+        <li><a class="header--nav-link color-brown" href="#">About</a></li>
+        <li><a class="header--nav-link color-brown" href="#">Contacts</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="main-container">
+  <section>
+    <form class="search-form" [formGroup]="filterCatsForm">
+      <mat-form-field class="example-full-width">
+        <mat-label for="results">Number of Results:</mat-label>
+        <input matInput type="number" id="results" formControlName="results">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="breed">Select The Breed:</mat-label>
+        <mat-select formControlName="breed" id="breed">
+          <mat-option *ngFor="let breed of breeds" [value]="breed.id">
+            {{ breed.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </section>
+
+  <div class="cat-cards">
+    <section class="cards-container">
+      <div *ngFor="let cat of catsData$ | async">
+        <app-cat-card
+          [catBreed]="cat.breeds && cat.breeds.length ? cat.breeds[0].name : 'Cat with no breed'"
+          [catImageUrl]="cat.url"
+          [catDescription]="cat.breeds && cat.breeds.length ? cat.breeds[0].description : 'There is no breed description'"
+        ></app-cat-card>
+      </div>
+      <div *ngIf="isNoCats">There is no results</div>
+    </section>
+
+    <button
+      class="mb-20"
+      mat-raised-button
+      color="primary"
+      (click)="loadMoreCats()"
+      [disabled]="!isMoreCats"
+    >
+      Load More Cats
+    </button>
+  </div>
+</main>
+
+<footer class="footer">
+  <p class="footer--info">Created by Vitaha</p>
+</footer>

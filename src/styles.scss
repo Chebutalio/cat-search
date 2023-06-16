@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.color-brown {
+  color: brown;
+}
